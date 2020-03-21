@@ -2,13 +2,14 @@
 console.log("*");
 var doc = window.document,
     _scroller = {},
-    _settings = {},
-    _btnSettings = doc.getElementById("btnSettings"),
+    _modShift = {},
+    _modAbout = {},
     _templates = doc.getElementsByTagName("template").item(0).content,
     _monthTemplate = _templates.querySelector("div.ph-month"),
     _dayPrevTemplate = _templates.querySelector("li.month-prev"),
     _dayCurrTemplate = _templates.querySelector("li.month-curr"),
     _scrollerDiv = doc.querySelector("div.ph-scroller-wrapper"),
+    _obfuscator = doc.querySelector("div.mdl-layout__obfuscator"),
     _shift;
 
 const FIRSTDAYOFWEEK = 1;
@@ -53,9 +54,21 @@ const _dateDiffInDays = (a, b) => {
 //
 function MonthScroller(date) {
 
+    this.el1st = null;
+
     // const
     const RUN_OFF = 12;
 
+    //
+    //
+    //
+    this.home = () => {
+        this.el1st.scrollIntoView();
+    };
+
+    //
+    //
+    //
     this.updateShift = () => {
         _scrollerDiv.childNodes.forEach(monthEl => {
             let date = new Date();
@@ -262,8 +275,8 @@ function MonthScroller(date) {
         date1st.setDate(1);
 
         // starting element
-        let el1st = this.getMonthFragment(date1st);
-        _scrollerDiv.appendChild(el1st);
+        this.el1st = this.getMonthFragment(date1st);
+        _scrollerDiv.appendChild(this.el1st);
 
         // now add elements in both side
         let topRect, bottomRect, scrollInsideHeight;
@@ -283,10 +296,10 @@ function MonthScroller(date) {
         while ((scrollInsideHeight / contextRect.height) < (2 * RUN_OFF + 1));
 
         // move to date to center
-        el1st.scrollIntoView();
+        this.el1st.scrollIntoView();
 
         // save offset
-        this._offset = -el1st.offsetTop;
+        this._offset = -this.el1st.offsetTop;
     };
 
     // On resize
@@ -307,29 +320,20 @@ function MonthScroller(date) {
 //
 //
 //
-function SettingsModal() {
+function ShiftModal() {
 
     // Gloabl state variables
     const STATE_CLOSED = 1;
     const STATE_OPEN = 2;
     let currentState = STATE_CLOSED;
 
-    this.click = (ev) => {
-        console.log("settings click:", ev);
+    this.open = () => {
+        currentState = STATE_OPEN;
+        this.updateState();
+    };
 
-        switch (currentState) {
-            case STATE_CLOSED:
-                currentState = STATE_OPEN;
-                break;
-            case STATE_OPEN:
-                currentState = STATE_CLOSED;
-                break;
-
-            default:
-                currentState = STATE_CLOSED;
-                break;
-        }
-
+    this.close = () => {
+        currentState = STATE_CLOSED;
         this.updateState();
     };
 
@@ -341,13 +345,13 @@ function SettingsModal() {
                 inputInit();
 
                 // open modal
-                obfuscator.classList.add("is-visible");
+                _obfuscator.classList.add("is-visible");
                 modal.style.display = "flex";
                 break;
             default:
 
                 // close modal
-                obfuscator.classList.remove("is-visible");
+                _obfuscator.classList.remove("is-visible");
                 modal.style.display = "none";
 
                 // and update shift pattern
@@ -380,14 +384,58 @@ function SettingsModal() {
         });
     }
 
-    // obfuscator
-    let obfuscator = doc.querySelector("div.mdl-layout__obfuscator");
-    obfuscator.addEventListener("click", this.click);
     // modal
-    let modal = doc.getElementById("modalSettings");
+    let modal = doc.getElementById("modalShift");
     // inputs
     let inputs = modal.querySelectorAll(".settings-list-control input");
     inputs.forEach(element => element.onclick = inputClick);
+}
+
+
+//
+//
+//
+function AboutModal() {
+
+    // Gloabl state variables
+    const STATE_CLOSED = 1;
+    const STATE_OPEN = 2;
+    let currentState = STATE_CLOSED;
+
+    this.open = () => {
+        currentState = STATE_OPEN;
+        this.updateState();
+    };
+
+    this.close = () => {
+        currentState = STATE_CLOSED;
+        this.updateState();
+    };
+
+    this.updateState = () => {
+        switch (currentState) {
+            case STATE_OPEN:
+
+                // open modal
+                _obfuscator.classList.add("is-visible");
+                modal.style.display = "flex";
+                break;
+            case STATE_CLOSED:
+
+                // close modal
+                _obfuscator.classList.remove("is-visible");
+                modal.style.display = "none";
+                break;
+        }
+    };
+
+    this.resize = () => {
+        currentState = STATE_CLOSED;
+        this.updateState();
+    };
+
+    // modal
+    let modal = doc.getElementById("modalAbout");
 }
 
 //
@@ -400,9 +448,26 @@ function updateShift() {
         localStorage.setItem("shift", "shift-C");
     }
     _shift = localStorage.getItem("shift");
+
+    // update scrollet with current shift
     _scroller.updateShift();
 
-    console.log(shift);
+    // update shift label 
+    let lblShift = doc.getElementById("btnShift");
+    switch (_shift) {
+        case "shift-A":
+            lblShift.innerText = "A SHIFT";
+            break;
+        case "shift-B":
+            lblShift.innerText = "B SHIFT";
+            break;
+        case "shift-C":
+            lblShift.innerText = "C SHIFT";
+            break;
+        case "shift-D":
+            lblShift.innerText = "D SHIFT";
+            break;
+    }
 }
 
 //
@@ -411,22 +476,33 @@ function updateShift() {
 function init() {
     // init callendar
     _scroller = new MonthScroller(new Date());
+    doc.getElementById("btnHome").onclick = _scroller.home;
 
-    // init settings modal
-    _settings = new SettingsModal();
-    _btnSettings.addEventListener("click", _settings.click);
+    // init shifts modal
+    _modShift = new ShiftModal();
+    doc.getElementById("btnShift").onclick = _modShift.open;
+
+    // init about modal
+    _modAbout = new AboutModal();
+    doc.getElementById("btnAbout").onclick = _modAbout.open;
+
+    // click on obfuscator to close modals
+    _obfuscator.onclick = () => {
+        _modShift.close();
+        _modAbout.close();
+    };
 
     updateShift();
     resize();
+    window.onresize = resize;
 }
 
 //
 //
 //
 function resize() {
-    _settings.resize();
+    _modShift.resize();
     _scroller.resize();
 }
 
 window.onload = init;
-window.onresize = resize;

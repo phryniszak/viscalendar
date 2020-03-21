@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"> -->
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">  
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
     <title>Material Design Lite</title>
 
     <!-- Add to homescreen for Chrome on Android -->
@@ -39,23 +39,25 @@
 <body>
 
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header
-            class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-800">
+        <header class="mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-800">
             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">JANUARY 2020</span>
+                <button id="btnShift" class="btn-big mdl-button mdl-js-button"></button>
                 <div class="mdl-layout-spacer"></div>
-                <!-- Mini FAB button -->
-                <button id="btnSettings" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
-                    <i class="material-icons-rotate material-icons">add</i>
+                <button id="btnHome" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+                    style="margin-right: 0.5em;">
+                    <i class="material-icons">home</i>
+                </button>
+                <button id="btnAbout" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                    <i class="material-icons">add</i>
                 </button>
             </div>
         </header>
-        
+
         <main class="mdl-layout__content">
             <div class="ph-scroller-wrapper"></div>
         </main>
         <!-- modal settings -->
-        <div id="modalSettings" class="modal">
+        <div id="modalShift" class="modal">
             <div class="settings-card mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text">Choose shift</h2>

@@ -16,6 +16,11 @@ body {
     transition: transform 0.3s ease;
 }
 
+.btn-big {
+    font-size: 2em;
+    height: 2em;
+}
+
 /* ------------------------------------------------------------------------------------------------------ */
 /* https://www.freecodecamp.org/news/how-to-center-things-with-style-in-css-dc87b7542689/ */
 .modal {
