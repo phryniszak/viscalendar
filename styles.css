@@ -3,6 +3,9 @@ body {
     font-family: 'Roboto', 'Helvetica', sans-serif;
     user-select: none;
     /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
+    /* Disables pull-to-refresh and overscroll glow effect.
+     Still keeps swipe navigations. */
+    overscroll-behavior-y: none;
 }
 
 /* ------------------------------------------------------------------------------------------------------ */
@@ -285,14 +288,14 @@ screen and (min-width: 75em) {
 /* https://www.rapidtables.com/web/css/css-color.html#gray */
 .shift-night-st {
     background: linear-gradient(to right,
-            gainsboro 30%,
+            rgb(243, 243, 243) 30%,
             lightskyblue 70%);
 }
 
 .shift-night-en {
     background: linear-gradient(to right,
             lightskyblue 30%,
-            gainsboro 70%);
+            rgb(243, 243, 243) 70%);
 }
 
 .shift-night {
@@ -304,5 +307,5 @@ screen and (min-width: 75em) {
 }
 
 .shift-off {
-    background-color: gainsboro;
+    background-color: rgb(243, 243, 243);
 }

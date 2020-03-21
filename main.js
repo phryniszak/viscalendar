@@ -14,6 +14,7 @@ var doc = window.document,
 const FIRSTDAYOFWEEK = 1;
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
 const _DATE_ZERO = new Date(2013, 0, 21);
+const _DEBUG = true;
 
 //
 //
@@ -58,8 +59,7 @@ function MonthScroller(date) {
     this.updateShift = () => {
         _scrollerDiv.childNodes.forEach(monthEl => {
             let date = new Date();
-            let month = date.setTime(monthEl.dataset.date);
-            console.log(month);
+            date.setTime(monthEl.dataset.date);
 
             monthEl.querySelectorAll(".month-curr").forEach((dayEl, index) => {
 
@@ -91,7 +91,7 @@ function MonthScroller(date) {
         // more correct way:
         // let daysDiff = _dateDiffInDays(day, _DATE_ZERO);
 
-        // is it days or nights
+        // shifts modulo pattern index
         let ndShiftsModulo = daysDiff % (7 * 8);
 
         switch (_shift) {
@@ -106,6 +106,23 @@ function MonthScroller(date) {
         }
 
         return _UNKNOWN_SHIFT;
+    };
+
+    //
+    //
+    // Only for info purpose
+    this.getDayModulo = (date) => {
+
+        let timeDiff = (date - _DATE_ZERO);
+        if (timeDiff < 0) {
+            return _UNKNOWN_SHIFT;
+        }
+
+        let daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+        // is it days or nights
+        let ndShiftsModulo = daysDiff % (7 * 8);
+        return "modulo-" + ndShiftsModulo;
     };
 
     //
@@ -155,6 +172,10 @@ function MonthScroller(date) {
             if (day) {
                 dayTemplate = _dayCurrTemplate.cloneNode(true);
                 dayTemplate.innerText = day.getDate();
+                dayTemplate.classList.add(this.getClassFromDay(day));
+                if (_DEBUG) {
+                    dayTemplate.classList.add(this.getDayModulo(day));
+                }
             } else {
                 dayTemplate = _dayPrevTemplate.cloneNode(true);
             }
