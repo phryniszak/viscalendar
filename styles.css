@@ -109,6 +109,7 @@ body {
 .ph-month>ul.day-grid>li.month-curr {
     /* background-color: #eaeaea; */
     border: 3px solid #f3f3f3;
+    transition: background-color 1000ms linear;
 }
 
 /* ------------------------------------------------------------------------------------------------------ */
@@ -282,26 +283,26 @@ screen and (min-width: 75em) {
 
 /* ------------------------------------------------------------------------------------------------------ */
 /* https://www.rapidtables.com/web/css/css-color.html#gray */
-.st-night-shift {
+.shift-night-st {
     background: linear-gradient(to right,
             gainsboro 30%,
             lightskyblue 70%);
 }
 
-.en-night-shift {
+.shift-night-en {
     background: linear-gradient(to right,
             lightskyblue 30%,
             gainsboro 70%);
 }
 
-.night-shift {
+.shift-night {
     background-color: lightskyblue;
 }
 
-.day-shift {
+.shift-day {
     background-color: peachpuff;
 }
 
-.day-off {
+.shift-off {
     background-color: gainsboro;
 }

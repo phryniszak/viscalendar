@@ -60,6 +60,19 @@ function MonthScroller(date) {
             let date = new Date();
             let month = date.setTime(monthEl.dataset.date);
             console.log(month);
+
+            monthEl.querySelectorAll(".month-curr").forEach((dayEl, index) => {
+
+                // first remove old
+                dayEl.classList.forEach(className => {
+                    className.startsWith("shift-") && dayEl.classList.remove(className);
+                });
+
+                date.setDate(index + 1);
+
+                // update with current shift class
+                dayEl.classList.add(this.getClassFromDay(date));
+            });
         });
     };
 
@@ -84,16 +97,12 @@ function MonthScroller(date) {
         switch (_shift) {
             case "shift-A":
                 return shift.A[ndShiftsModulo] || _UNKNOWN_SHIFT;
-                break;
             case "shift-B":
                 return shift.B[ndShiftsModulo] || _UNKNOWN_SHIFT;
-                break;
             case "shift-C":
                 return shift.C[ndShiftsModulo] || _UNKNOWN_SHIFT;
-                break;
             case "shift-D":
                 return shift.D[ndShiftsModulo] || _UNKNOWN_SHIFT;
-                break;
         }
 
         return _UNKNOWN_SHIFT;
@@ -370,11 +379,12 @@ function init() {
 
     // init callendar
     _scroller = new MonthScroller(new Date());
-    _scroller.resize();
 
     // init settings modal
     _settings = new SettingsModal();
     _btnSettings.addEventListener("click", _settings.click);
+
+    resize();
 }
 
 //

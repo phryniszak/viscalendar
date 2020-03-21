@@ -1,9 +1,9 @@
-const _DAY_SHIFT = "day-shift";
-const _NIGHT_SHIFT = "night-shift";
-const _START_NIGHT_SHIFT = "st-night-shift";
-const _END_NIGHT_SHIFT = "en-night-shift";
-const _DAY_OFF = "day-off";
-const _UNKNOWN_SHIFT = "day-unknown";
+const _DAY_SHIFT = "shift-day";
+const _NIGHT_SHIFT = "shift-night";
+const _START_NIGHT_SHIFT = "shift-night-st";
+const _END_NIGHT_SHIFT = "shift-night-en";
+const _DAY_OFF = "shift-off";
+const _UNKNOWN_SHIFT = "shift-unknown";
 
 var shift = {};
 
