@@ -300,3 +300,11 @@ shift.A[55]=_DAY_OFF;
 shift.B[55]=_DAY_OFF;
 shift.C[55]=_NIGHT_SHIFT;
 shift.D[55]=_DAY_SHIFT;
+
+exports.shift = shift;
+exports.DAY_SHIFT = _DAY_SHIFT;
+exports.NIGHT_SHIFT = _NIGHT_SHIFT;
+exports.START_NIGHT_SHIFT = _START_NIGHT_SHIFT;
+exports.END_NIGHT_SHIFT = _END_NIGHT_SHIFT;
+exports.DAY_OFF = _DAY_OFF;
+exports.UNKNOWN_SHIFT = _UNKNOWN_SHIFT;
