@@ -155,7 +155,6 @@ function MonthScroller(date) {
             if (day) {
                 dayTemplate = _dayCurrTemplate.cloneNode(true);
                 dayTemplate.innerText = day.getDate();
-                dayTemplate.classList.add(this.getClassFromDay(day));
             } else {
                 dayTemplate = _dayPrevTemplate.cloneNode(true);
             }
@@ -316,12 +315,22 @@ function SettingsModal() {
     this.updateState = () => {
         switch (currentState) {
             case STATE_OPEN:
+
+                // update with curren shift
+                inputInit();
+
+                // open modal
                 obfuscator.classList.add("is-visible");
                 modal.style.display = "flex";
                 break;
             default:
+
+                // close modal
                 obfuscator.classList.remove("is-visible");
                 modal.style.display = "none";
+
+                // and update shift pattern
+                updateShift();
                 break;
         }
     };
@@ -343,10 +352,8 @@ function SettingsModal() {
     }
 
     function inputInit() {
-        // save selection
-        let shiftId = localStorage.getItem("shift");
         inputs.forEach(element => {
-            if (element.id === shiftId) {
+            if (element.id === _shift) {
                 element.parentElement.MaterialCheckbox.check();
             }
         });
@@ -360,23 +367,27 @@ function SettingsModal() {
     // inputs
     let inputs = modal.querySelectorAll(".settings-list-control input");
     inputs.forEach(element => element.onclick = inputClick);
-    inputInit();
 }
 
 //
 //
 //
-function init() {
-
+function updateShift() {
     // init shift
     let shift = localStorage.getItem("shift");
     if (!shift) {
         localStorage.setItem("shift", "shift-C");
     }
     _shift = localStorage.getItem("shift");
+    _scroller.updateShift();
 
-    console.log(_shift);
+    console.log(shift);
+}
 
+//
+//
+//
+function init() {
     // init callendar
     _scroller = new MonthScroller(new Date());
 
@@ -384,6 +395,7 @@ function init() {
     _settings = new SettingsModal();
     _btnSettings.addEventListener("click", _settings.click);
 
+    updateShift();
     resize();
 }
 
