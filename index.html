@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"> -->
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">  
+    <title>Material Design Lite</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="./mdl/googlefonts.css">
+    <link rel="stylesheet" href="./mdl/materialicons.css">
+    <link rel="stylesheet" href="./mdl/material.css">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header
+            class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-800">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">JANUARY 2020</span>
+                <div class="mdl-layout-spacer"></div>
+                <!-- Mini FAB button -->
+                <button id="btnSettings" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                    <i class="material-icons-rotate material-icons">add</i>
+                </button>
+            </div>
+        </header>
+        
+        <main class="mdl-layout__content">
+            <div class="ph-scroller-wrapper"></div>
+        </main>
+        <!-- modal settings -->
+        <div id="modalSettings" class="modal">
+            <div class="settings-card mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Choose shift</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <ul class="settings-list-control mdl-list">
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">SHIFT A</span>
+                            <span class="mdl-list__item-secondary-action">
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="shift-A">
+                                    <input type="checkbox" id="shift-A" class="mdl-checkbox__input" />
+                                </label>
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">SHIFT B</span>
+                            <span class="mdl-list__item-secondary-action">
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="shift-B">
+                                    <input type="checkbox" id="shift-B" class="mdl-checkbox__input" />
+                                </label>
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">SHIFT C</span>
+                            <span class="mdl-list__item-secondary-action">
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="shift-C">
+                                    <input type="checkbox" id="shift-C" class="mdl-checkbox__input" />
+                                </label>
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">SHIFT D</span>
+                            <span class="mdl-list__item-secondary-action">
+                                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="shift-D">
+                                    <input type="checkbox" id="shift-D" class="mdl-checkbox__input" />
+                                </label>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal about -->
+        <div id="modalAbout" class="modal">
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Welcome</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Mauris sagittis pellentesque lacus eleifend lacinia...
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        Get Started
+                    </a>
+                </div>
+                <div class="mdl-card__menu">
+                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons">share</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- obfuscator -->
+        <div class="mdl-layout__obfuscator"></div>
+
+        <template>
+            <!-- https://codepen.io/geoffgraham/pen/vWXBea -->
+            <div class="ph-month">
+                <header>November 2017</header>
+
+                <ul class="weekdays">
+                    <li>
+                        <div class="show-for-small-only">M</div>
+                        <div class="show-for-medium-only">Mon</div>
+                        <div class="show-for-large">Monday</div>
+                    </li>
+                    <li>
+                        <div class="show-for-small-only">M</div>
+                        <div class="show-for-medium-only">Mon</div>
+                        <div class="show-for-large">Monday</div>
+                    </li>
+                    <li>
+                        <div class="show-for-small-only">M</div>
+                        <div class="show-for-medium-only">Mon</div>
+                        <div class="show-for-large">Monday</div>
+                    </li>
+                    <li>
+                        <div class="show-for-small-only">M</div>
+                        <div class="show-for-medium-only">Mon</div>
+                        <div class="show-for-large">Monday</div>
+                    </li>
+                    <li>
+                        <div class="show-for-small-only">M</div>
+                        <div class="show-for-medium-only">Mon</div>
+                        <div class="show-for-large">Monday</div>
+                    </li>
+                    <li>
+                        <div class="show-for-small-only">M</div>
+                        <div class="show-for-medium-only">Mon</div>
+                        <div class="show-for-large">Monday</div>
+                    </li>
+                    <li>
+                        <div class="show-for-small-only">M</div>
+                        <div class="show-for-medium-only">Mon</div>
+                        <div class="show-for-large">Monday</div>
+                    </li>
+                </ul>
+
+                <ul class="day-grid">
+                </ul>
+            </div>
+            <li class="month-prev"></li>
+            <li class="month-curr">1</li>
+            <li class="month-next"></li>
+
+        </template>
+
+    </div>
+
+    <script src="./mdl/material.js"></script>
+    <script src="./shifts.js"></script>
+    <script src="./main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+--2020-03-11 22:29:47--  https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium
+Resolving fonts.googleapis.com (fonts.googleapis.com)... 74.125.193.95, 2a00:1450:400b:c01::5f
+Connecting to fonts.googleapis.com (fonts.googleapis.com)|74.125.193.95|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/css]
+Saving to: ‘css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium’
+
+               css?family=Rob     [<=>                                            ]       0  --.-KB/s               css?family=Roboto:regular,bol     [ <=>                                           ]   1.79K  --.-KB/s    in 0s      
+
+2020-03-11 22:29:47 (11.1 MB/s) - ‘css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium’ saved [1828]
+

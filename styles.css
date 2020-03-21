@@ -1,0 +1,307 @@
+html,
+body {
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+    user-select: none;
+    /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
+
+.material-icons-rotate {
+    -webkit-transform: translate(-12px, -12px) rotate(45deg);
+    transform: translate(-12px, -12px) rotate(45deg);
+    transition: transform 0.3s ease;
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
+/* https://www.freecodecamp.org/news/how-to-center-things-with-style-in-css-dc87b7542689/ */
+.modal {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+/* -------------------------------------------- */
+.settings-card {
+    width: 480px;
+    max-width: 90vw;
+}
+
+/* -------------------------------------------- */
+
+.demo-card-wide.mdl-card {
+    width: 512px;
+    max-width: 90vw;
+}
+
+.demo-card-wide>.mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('./images/welcome_card.jpg') center / cover;
+}
+
+.demo-card-wide>.mdl-card__menu {
+    color: #fff;
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
+
+.ph-scroller-wrapper {
+    /* overflow: hidden; */
+    position: absolute;
+    width: 100%;
+    /* transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1); */
+}
+
+.ph-month {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.ph-month>header {
+    display: flex;
+    align-items: center;
+    font-size: calc(20px + (40 - 20) * ((100vw - 300px) / (1000 - 300)));
+    justify-content: center;
+    /* margin-bottom: 1em; */
+    min-height: 10vh;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.ph-month>ul {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 0.25em;
+    margin: 0 auto;
+    max-width: 64em;
+    padding: 0;
+}
+
+.ph-month>ul>li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin-left: 0;
+    font-size: calc(20px + (70 - 20) * ((100vw - 300px) / (1600 - 300)));
+}
+
+.ph-month>.weekdays {
+    margin-bottom: 1em;
+}
+
+.ph-month>.weekdays li {
+    height: 4vw;
+}
+
+.ph-month>ul.day-grid>li {
+    /* background-color: #eaeaea;
+    border: 1px solid #eaeaea; */
+    /* font-size: 3em; */
+    height: 12vw;
+    max-height: 125px;
+}
+
+.ph-month>ul.day-grid>li.month-curr {
+    /* background-color: #eaeaea; */
+    border: 3px solid #f3f3f3;
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
+
+@media all and (min-width: 600px) {
+    .ph-month>ul {
+        grid-gap: 1em;
+    }
+}
+
+@media all and (min-width: 800px) {
+    .ph-month>ul {
+        grid-gap: 1.5em;
+    }
+
+    .ph-month>.weekdays li {
+        font-size: calc(22px + (25 - 22) * ((100vw - 800px) / (1600 - 800)));
+    }
+
+}
+
+@media screen and (max-width: 0em),
+screen and (min-width: 600px) {
+    .show-for-small-only {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 599px),
+screen and (min-width: 800px) {
+    .show-for-medium-only {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 799px) {
+    .show-for-large {
+        display: none !important;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
+/* 
+.hide {
+    display: none !important;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+@media print,
+screen and (max-width: 39.99875em) {
+    .hide-for-small-only {
+        display: none !important;
+    }
+}
+
+
+@media print,
+screen and (min-width: 40em) {
+    .hide-for-medium {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 39.99875em) {
+    .show-for-medium {
+        display: none !important;
+    }
+}
+
+@media print,
+screen and (min-width: 40em) and (max-width: 63.99875em) {
+    .hide-for-medium-only {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 39.99875em),
+screen and (min-width: 64em) {
+    .show-for-medium-only {
+        display: none !important;
+    }
+}
+
+@media print,
+screen and (min-width: 64em) {
+    .hide-for-large {
+        display: none !important;
+    }
+}
+
+@media print,
+screen and (min-width: 64em) and (max-width: 74.99875em) {
+    .hide-for-large-only {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 63.99875em),
+screen and (min-width: 75em) {
+    .show-for-large-only {
+        display: none !important;
+    }
+}
+
+.show-for-sr,
+.show-on-focus {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+.show-on-focus:active,
+.show-on-focus:focus {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+}
+
+.show-for-landscape,
+.hide-for-portrait {
+    display: block !important;
+}
+
+@media screen and (orientation: landscape) {
+
+    .show-for-landscape,
+    .hide-for-portrait {
+        display: block !important;
+    }
+}
+
+@media screen and (orientation: portrait) {
+
+    .show-for-landscape,
+    .hide-for-portrait {
+        display: none !important;
+    }
+}
+
+.hide-for-landscape,
+.show-for-portrait {
+    display: none !important;
+}
+
+@media screen and (orientation: landscape) {
+
+    .hide-for-landscape,
+    .show-for-portrait {
+        display: none !important;
+    }
+}
+
+@media screen and (orientation: portrait) {
+
+    .hide-for-landscape,
+    .show-for-portrait {
+        display: block !important;
+    }
+}  */
+
+/* ------------------------------------------------------------------------------------------------------ */
+/* https://www.rapidtables.com/web/css/css-color.html#gray */
+.st-night-shift {
+    background: linear-gradient(to right,
+            gainsboro 30%,
+            lightskyblue 70%);
+}
+
+.en-night-shift {
+    background: linear-gradient(to right,
+            lightskyblue 30%,
+            gainsboro 70%);
+}
+
+.night-shift {
+    background-color: lightskyblue;
+}
+
+.day-shift {
+    background-color: peachpuff;
+}
+
+.day-off {
+    background-color: gainsboro;
+}
