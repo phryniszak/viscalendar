@@ -40,9 +40,7 @@
 </head>
 
 <body>
-    <!--[if lt IE 10]>
-    <p class="browserupgrade">Votre logiciel de navigation internet est <strong>obsolète</strong>. Veuillez <a href="http://browsehappy.com/" target="_blank">le mettre à jour</a> pour profiter de toutes les fonctionnalités de ce plan comptable belge.</p>
-<![endif]-->
+
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-800">
             <div class="mdl-layout__header-row">
@@ -53,14 +51,20 @@
                     <i class="material-icons">home</i>
                 </button>
                 <button id="btnAbout" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
-                    <i class="material-icons">add</i>
+                    <i class="material-icons">info</i>
                 </button>
             </div>
         </header>
 
         <main class="mdl-layout__content">
             <div class="ph-scroller-wrapper"></div>
+            <!-- IE -->
+            <div id="lblOldCrap" class="hidden">
+                <p>This browser <strong>out of date</strong>. Update browser <a href="http://browsehappy.com/"
+                        target="_blank"> here </a></p>
+            </div>
         </main>
+
         <!-- modal settings -->
         <div id="modalShift" class="modal">
             <div class="settings-card mdl-card mdl-shadow--2dp">
@@ -110,15 +114,16 @@
         <div id="modalAbout" class="modal">
             <div class="demo-card-wide mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text">Time is ticking...</h2>
+                    <h2 id="lblTick" class="text-tick mdl-card__title-text">Time is ticking...</h2>
                 </div>
                 <div class="mdl-card__supporting-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Mauris sagittis pellentesque lacus eleifend lacinia...
+                    This is a personal program, what I present here doesn’t necessarily reflect the position of my
+                    employer,
+                    and sometimes, doesn’t reflect mine either.<br>Pawel Hryniszak
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                        INSTALL AS APP
+                    <a id="btnInstall" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        Install as app
                     </a>
                 </div>
                 <div class="mdl-card__menu">

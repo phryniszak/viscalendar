@@ -10,11 +10,14 @@ var doc = window.document,
     _dayCurrTemplate = _templates.querySelector("li.month-curr"),
     _scrollerDiv = doc.querySelector("div.ph-scroller-wrapper"),
     _obfuscator = doc.querySelector("div.mdl-layout__obfuscator"),
-    _shift;
+    _shift,
+    _browserLaunched = true,
+    _msie = (window.navigator.userAgent.indexOf("MSIE ") !== -1);
+
 
 const FIRSTDAYOFWEEK = 1;
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-const _DATE_ZERO = new Date(2013, 0, 21);
+const _DATE_ZERO = new Date(2005, 9, 11);
 const _DEBUG = true;
 
 //
@@ -401,6 +404,10 @@ function AboutModal() {
     const STATE_CLOSED = 1;
     const STATE_OPEN = 2;
     let currentState = STATE_CLOSED;
+    let timer;
+    let lblTick = doc.getElementById("lblTick");
+    let tickText = lblTick.innerText;
+    let tickNr = 0;
 
     this.open = () => {
         currentState = STATE_OPEN;
@@ -412,15 +419,47 @@ function AboutModal() {
         this.updateState();
     };
 
+    this.tick = () => {
+        switch (tickNr++) {
+            case 1:
+                lblTick.style.opacity = 1;
+                lblTick.innerText = tickText;
+                break;                
+            case 15:
+                lblTick.style.opacity = 0;
+                break;
+            case 20:
+                lblTick.style.opacity = 1;
+                lblTick.innerText = `... ${_dateDiffInDays(new Date(), new Date(2024, 3, 1))} days left`;                
+                break;
+            case 35:
+                lblTick.style.opacity = 0;
+                break;
+            case 40:
+                tickNr = 0;
+                break;
+        }
+    };
+
+
     this.updateState = () => {
         switch (currentState) {
             case STATE_OPEN:
+
+                // start timer
+                timer = setInterval(this.tick, 100);
 
                 // open modal
                 _obfuscator.classList.add("is-visible");
                 modal.style.display = "flex";
                 break;
+
             case STATE_CLOSED:
+
+                // restore to "zero" state
+                clearInterval(timer);
+                tickNr = 0;
+                lblTick.innerText = tickText;
 
                 // close modal
                 _obfuscator.classList.remove("is-visible");
@@ -472,8 +511,47 @@ function updateShift() {
 
 //
 //
+// https://web.dev/customize-install/#detect-mode
+function installApp() {
+    console.log("installApp");
+    const promptEvent = window.deferredPrompt;
+    if (!promptEvent) {
+        // The deferred prompt isn't available.
+        return;
+    }
+    // Show the install prompt.
+    promptEvent.prompt();
+    // Log the result
+    promptEvent.userChoice.then((result) => {
+        console.log("👍", "userChoice", result);
+        // Reset the deferred prompt variable, since
+        // prompt() can only be called once.
+        window.deferredPrompt = null;
+        // Hide the install button.
+        // divInstall.classList.toggle("hidden", true);
+    });
+}
+
+//
+//
 //
 function init() {
+
+    // old crap - thamks...
+    if (_msie) {
+        doc.getElementById("lblOldCrap").classList.remove("hidden");
+        return;
+    }
+
+    // are we launch from desktop
+    if (navigator.standalone) {
+        _browserLaunched = false;
+        console.log("Launched: Installed (iOS)");
+    } else if (matchMedia("(display-mode: standalone)").matches) {
+        _browserLaunched = false;
+        console.log("Launched: Installed");
+    }
+
     // init callendar
     _scroller = new MonthScroller(new Date());
     doc.getElementById("btnHome").onclick = _scroller.home;
@@ -492,7 +570,12 @@ function init() {
         _modAbout.close();
     };
 
+    // install app
+    doc.getElementById("btnInstall").onclick = installApp;
+
+    // update app with current settings
     updateShift();
+
     resize();
     window.onresize = resize;
 }
@@ -502,6 +585,7 @@ function init() {
 //
 function resize() {
     _modShift.resize();
+    _modAbout.resize();
     _scroller.resize();
 }
 

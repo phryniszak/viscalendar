@@ -117,7 +117,7 @@ body {
 .ph-month>ul.day-grid>li.month-curr {
     /* background-color: #eaeaea; */
     border: 3px solid #f3f3f3;
-    transition: background-color 1000ms linear;
+    transition: background-color 500ms linear;
 }
 
 /* ------------------------------------------------------------------------------------------------------ */
@@ -160,137 +160,7 @@ screen and (min-width: 800px) {
 }
 
 /* ------------------------------------------------------------------------------------------------------ */
-/* 
-.hide {
-    display: none !important;
-}
 
-.invisible {
-    visibility: hidden;
-}
-
-@media print,
-screen and (max-width: 39.99875em) {
-    .hide-for-small-only {
-        display: none !important;
-    }
-}
-
-
-@media print,
-screen and (min-width: 40em) {
-    .hide-for-medium {
-        display: none !important;
-    }
-}
-
-@media screen and (max-width: 39.99875em) {
-    .show-for-medium {
-        display: none !important;
-    }
-}
-
-@media print,
-screen and (min-width: 40em) and (max-width: 63.99875em) {
-    .hide-for-medium-only {
-        display: none !important;
-    }
-}
-
-@media screen and (max-width: 39.99875em),
-screen and (min-width: 64em) {
-    .show-for-medium-only {
-        display: none !important;
-    }
-}
-
-@media print,
-screen and (min-width: 64em) {
-    .hide-for-large {
-        display: none !important;
-    }
-}
-
-@media print,
-screen and (min-width: 64em) and (max-width: 74.99875em) {
-    .hide-for-large-only {
-        display: none !important;
-    }
-}
-
-@media screen and (max-width: 63.99875em),
-screen and (min-width: 75em) {
-    .show-for-large-only {
-        display: none !important;
-    }
-}
-
-.show-for-sr,
-.show-on-focus {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    clip: rect(0, 0, 0, 0) !important;
-    white-space: nowrap !important;
-    border: 0 !important;
-}
-
-.show-on-focus:active,
-.show-on-focus:focus {
-    position: static !important;
-    width: auto !important;
-    height: auto !important;
-    overflow: visible !important;
-    clip: auto !important;
-    white-space: normal !important;
-}
-
-.show-for-landscape,
-.hide-for-portrait {
-    display: block !important;
-}
-
-@media screen and (orientation: landscape) {
-
-    .show-for-landscape,
-    .hide-for-portrait {
-        display: block !important;
-    }
-}
-
-@media screen and (orientation: portrait) {
-
-    .show-for-landscape,
-    .hide-for-portrait {
-        display: none !important;
-    }
-}
-
-.hide-for-landscape,
-.show-for-portrait {
-    display: none !important;
-}
-
-@media screen and (orientation: landscape) {
-
-    .hide-for-landscape,
-    .show-for-portrait {
-        display: none !important;
-    }
-}
-
-@media screen and (orientation: portrait) {
-
-    .hide-for-landscape,
-    .show-for-portrait {
-        display: block !important;
-    }
-}  */
-
-/* ------------------------------------------------------------------------------------------------------ */
-/* https://www.rapidtables.com/web/css/css-color.html#gray */
 .shift-night-st {
     background: linear-gradient(to right,
             rgb(243, 243, 243) 30%,
@@ -313,4 +183,11 @@ screen and (min-width: 75em) {
 
 .shift-off {
     background-color: rgb(243, 243, 243);
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
+
+.text-tick {
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
 }
