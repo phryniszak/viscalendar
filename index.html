@@ -3,27 +3,29 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="author" content="Pawel Hryniszak">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"> -->
+    <meta name="description" content="Vistakon shift calendar">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Material Design Lite</title>
+    <title>Shift Calendar</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+    <link rel="icon" sizes="192x192" href="./images/icons/android-chrome-192x192.png">
 
     <!-- Add to homescreen for Safari on iOS -->
+    <!-- https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
-    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="grey">
+    <meta name="apple-mobile-web-app-title" content="Shift Calendar">
+    <link rel="apple-touch-icon-precomposed" href="./images/icons/apple-touch-icon.png">
 
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <!-- Tile icon for Win8 (150x150 + tile color) -->
+    <meta name="msapplication-TileImage" content="./images/icons/mstile-150x150.png">
     <meta name="msapplication-TileColor" content="#3372DF">
 
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="./images/favicon.ico">
+    <link rel="manifest" href="./manifest.json">
 
     <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
     <!--
@@ -32,12 +34,15 @@
 
     <link rel="stylesheet" href="./mdl/googlefonts.css">
     <link rel="stylesheet" href="./mdl/materialicons.css">
-    <link rel="stylesheet" href="./mdl/material.css">
+    <link rel="stylesheet" href="./mdl/material.min.css">
     <link rel="stylesheet" href="./styles.css">
+
 </head>
 
 <body>
-
+    <!--[if lt IE 10]>
+    <p class="browserupgrade">Votre logiciel de navigation internet est <strong>obsolète</strong>. Veuillez <a href="http://browsehappy.com/" target="_blank">le mettre à jour</a> pour profiter de toutes les fonctionnalités de ce plan comptable belge.</p>
+<![endif]-->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-800">
             <div class="mdl-layout__header-row">
@@ -105,7 +110,7 @@
         <div id="modalAbout" class="modal">
             <div class="demo-card-wide mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text">Welcome</h2>
+                    <h2 class="mdl-card__title-text">Time is ticking...</h2>
                 </div>
                 <div class="mdl-card__supporting-text">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -113,7 +118,7 @@
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
                     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                        Get Started
+                        INSTALL AS APP
                     </a>
                 </div>
                 <div class="mdl-card__menu">
@@ -181,10 +186,21 @@
 
     </div>
 
-    <script src="./mdl/material.js"></script>
+    <script src="./mdl/material.min.js"></script>
     <script src="./shifts.js"></script>
     <script src="./main.js"></script>
+    <script src="./upup.min.js"></script>
+    <script src="./pwa.js"></script>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161566565-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-161566565-1');
+    </script>
 </body>
 
 </html>

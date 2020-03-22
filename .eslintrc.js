@@ -27,6 +27,7 @@ module.exports = {
     },
     "globals": {
         "_UNKNOWN_SHIFT": true,
-        "shift": true
+        "shift": true,
+        "UpUp": true
     }
 };
