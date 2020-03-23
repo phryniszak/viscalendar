@@ -1,7 +1,3 @@
-// https://vaadin.com/learn/tutorials/learn-pwa/turn-website-into-a-pwa
-// https://dev.to/becodeorg/the-easy-way-to-turn-a-website-into-a-progressive-web-app-77g
-// https://www.talater.com/upup/getting-started-with-offline-first.html
-
 UpUp.start({
     "content-url": "index.html",
     "assets": [

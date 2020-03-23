@@ -1,11 +1,13 @@
 {
-    "name": "Vistakon shift calendar",
-    "short_name": "Shift Calendar",
+    "name": "ShiftCal",
+    "short_name": "ShiftCal",
     "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#2A3443",
-    "description": "A demo app for a fictional conference",
+    "description": "Vistakon shift calendar",
     "theme_color": "#2A3443",
+    "version": "1.0.0",
+    "orientation": "portrait",
     "icons": [
         {
             "src": "./images/icons/android-chrome-192x192.png",

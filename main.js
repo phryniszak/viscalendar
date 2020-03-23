@@ -30,16 +30,16 @@ const _dateAdd = (date, delta) => {
 //
 //
 // utils:
-const _debounce = (func, delay) => {
-    let debounceTimer;
-    return function () {
-        const context = this;
-        const args = arguments;
-        clearTimeout(debounceTimer);
-        debounceTimer
-            = setTimeout(() => func.apply(context, args), delay);
-    };
-};
+// const _debounce = (func, delay) => {
+//     let debounceTimer;
+//     return function () {
+//         const context = this;
+//         const args = arguments;
+//         clearTimeout(debounceTimer);
+//         debounceTimer
+//             = setTimeout(() => func.apply(context, args), delay);
+//     };
+// };
 
 //
 //
@@ -259,16 +259,12 @@ function MonthScroller(date) {
         // this.scrollUpdateDebounce();
     };
 
-
-    //
-    //
-    // TODO: remove excessive elements
-    this.scrollUpdateDebounce = _debounce(() => console.log("debounced"), 100);
-
     //
     //
     //
     this.initLayout = (date) => {
+
+        let currDate = date.getDate();
 
         // First day of the month (at midnight).
         // some strange things can happen if we stuck with 31 day of the month
@@ -280,6 +276,8 @@ function MonthScroller(date) {
         // starting element
         this.el1st = this.getMonthFragment(date1st);
         _scrollerDiv.appendChild(this.el1st);
+        // set current day
+        this.el1st.querySelectorAll(".month-curr")[currDate - 1].classList.add("today");
 
         // now add elements in both side
         let topRect, bottomRect, scrollInsideHeight;
@@ -424,18 +422,18 @@ function AboutModal() {
             case 1:
                 lblTick.style.opacity = 1;
                 lblTick.innerText = tickText;
-                break;                
-            case 15:
+                break;
+            case 16:
                 lblTick.style.opacity = 0;
                 break;
             case 20:
                 lblTick.style.opacity = 1;
-                lblTick.innerText = `... ${_dateDiffInDays(new Date(), new Date(2024, 3, 1))} days left`;                
+                lblTick.innerText = `... ${_dateDiffInDays(new Date(), new Date(2024, 3, 1))} days left`;
                 break;
             case 35:
                 lblTick.style.opacity = 0;
                 break;
-            case 40:
+            case 39:
                 tickNr = 0;
                 break;
         }
@@ -448,6 +446,13 @@ function AboutModal() {
 
                 // start timer
                 timer = setInterval(this.tick, 100);
+
+                // enable/disable install button
+                if (window.deferredPrompt)
+                    doc.getElementById("btnInstall").removeAttribute("disabled");
+                else
+                    doc.getElementById("btnInstall").setAttribute("disabled", "");
+
 
                 // open modal
                 _obfuscator.classList.add("is-visible");
@@ -523,7 +528,7 @@ function installApp() {
     promptEvent.prompt();
     // Log the result
     promptEvent.userChoice.then((result) => {
-        console.log("👍", "userChoice", result);
+        console.log("userChoice", result);
         // Reset the deferred prompt variable, since
         // prompt() can only be called once.
         window.deferredPrompt = null;
@@ -537,13 +542,13 @@ function installApp() {
 //
 function init() {
 
-    // old crap - thamks...
+    // old crap - thanks...
     if (_msie) {
         doc.getElementById("lblOldCrap").classList.remove("hidden");
         return;
     }
 
-    // are we launch from desktop
+    // check for launch from desktop
     if (navigator.standalone) {
         _browserLaunched = false;
         console.log("Launched: Installed (iOS)");
