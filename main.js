@@ -447,12 +447,16 @@ function AboutModal() {
                 // start timer
                 timer = setInterval(this.tick, 100);
 
-                // enable/disable install button
-                if (window.deferredPrompt)
-                    doc.getElementById("btnInstall").removeAttribute("disabled");
-                else
-                    doc.getElementById("btnInstall").setAttribute("disabled", "");
-
+                if (_browserLaunched) {
+                    // enable/disable install button
+                    if (window.deferredPrompt)
+                        doc.getElementById("btnInstall").removeAttribute("disabled");
+                    else
+                        doc.getElementById("btnInstall").setAttribute("disabled", "");
+                } else {
+                    // hide if we are launch as app
+                    doc.getElementById("btnInstall").parentNode.style.display = "none";
+                }
 
                 // open modal
                 _obfuscator.classList.add("is-visible");
