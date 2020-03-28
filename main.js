@@ -17,8 +17,8 @@ var doc = window.document,
 
 const FIRSTDAYOFWEEK = 1;
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-const _DATE_ZERO = new Date(2005, 9, 11);
-const _DEBUG = true;
+const _DATE_ZERO = Date.UTC(2005, 9, 10);
+const _DEBUG = false;
 
 //
 //
@@ -50,6 +50,15 @@ const _dateDiffInDays = (a, b) => {
     const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
 
     return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+};
+
+//
+//
+// a and b are javascript Date objects
+const _dateDiffInDays2zero = (a) => {
+    // Discard the time and time-zone information.
+    const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+    return Math.floor((utc1 - _DATE_ZERO) / _MS_PER_DAY);
 };
 
 //
@@ -97,15 +106,10 @@ function MonthScroller(date) {
     //
     this.getClassFromDay = (date) => {
 
-        let timeDiff = (date - _DATE_ZERO);
-        if (timeDiff < 0) {
+        let daysDiff = _dateDiffInDays2zero(date);
+        if (daysDiff < 0) {
             return _UNKNOWN_SHIFT;
         }
-
-        let daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-        // more correct way:
-        // let daysDiff = _dateDiffInDays(day, _DATE_ZERO);
 
         // shifts modulo pattern index
         let ndShiftsModulo = daysDiff % (7 * 8);
@@ -129,12 +133,10 @@ function MonthScroller(date) {
     // Only for info purpose
     this.getDayModulo = (date) => {
 
-        let timeDiff = (date - _DATE_ZERO);
-        if (timeDiff < 0) {
+        let daysDiff = _dateDiffInDays2zero(date);
+        if (daysDiff < 0) {
             return _UNKNOWN_SHIFT;
         }
-
-        let daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
         // is it days or nights
         let ndShiftsModulo = daysDiff % (7 * 8);
@@ -305,7 +307,8 @@ function MonthScroller(date) {
 
     // On resize
     this.resize = () => {
-        console.log("Scroller resize");
+        if (_DEBUG)
+            console.log("Scroller resize");
     };
 
     // init month template with week days
