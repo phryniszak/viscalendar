@@ -62,6 +62,8 @@
             <div id="lblOldCrap" class="hidden">
                 <p>This browser <strong>out of date</strong>. Update browser <a href="http://browsehappy.com/"
                         target="_blank"> here </a></p>
+                <p>If you are looking for old version of <strong>VISCALENDAR</strong> check here <a
+                        href="https://viscalendar.000webhostapp.com/"> here </a></p>
             </div>
         </main>
 
@@ -127,7 +129,8 @@
                     </a>
                 </div>
                 <div class="mdl-card__menu">
-                    <a href="https://github.com/phryniszak/viscalendar" target="_blank" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                    <a href="https://github.com/phryniszak/viscalendar" target="_blank"
+                        class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                         <i class="material-icons">share</i>
                     </a>
                 </div>
@@ -191,17 +194,30 @@
 
     </div>
 
+    <script src="./loadJS.js"></script>
     <script src="./mdl/material.min.js"></script>
-    <script src="./shifts.js"></script>
-    <script src="./main.js"></script>
-    <script src="./upup.min.js"></script>
-    <script src="./pwa.js"></script>
+
+    <script>
+        if (window.document.documentMode) {
+            window.document.querySelector("template").classList.add("hidden");
+            window.document.getElementById("lblOldCrap").classList.remove("hidden");
+        } else {
+            loadJS("./shifts.js", true);
+            loadJS("./main.js", true);
+            loadJS("./upup.min.js", true);
+            loadJS("./pwa.js", true);
+        }
+    </script>
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161566565-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
 
         gtag('config', 'UA-161566565-1');

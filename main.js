@@ -11,8 +11,7 @@ var doc = window.document,
     _scrollerDiv = doc.querySelector("div.ph-scroller-wrapper"),
     _obfuscator = doc.querySelector("div.mdl-layout__obfuscator"),
     _shift,
-    _browserLaunched = true,
-    _msie = (window.navigator.userAgent.indexOf("MSIE ") !== -1);
+    _browserLaunched = true;
 
 
 const FIRSTDAYOFWEEK = 1;
@@ -23,43 +22,29 @@ const _DEBUG = false;
 //
 //
 // utils:
-const _dateAdd = (date, delta) => {
+function _dateAdd(date, delta) {
     date.setDate(date.getDate() + delta);
-};
-
-//
-//
-// utils:
-// const _debounce = (func, delay) => {
-//     let debounceTimer;
-//     return function () {
-//         const context = this;
-//         const args = arguments;
-//         clearTimeout(debounceTimer);
-//         debounceTimer
-//             = setTimeout(() => func.apply(context, args), delay);
-//     };
-// };
+}
 
 //
 //
 // a and b are javascript Date objects
-const _dateDiffInDays = (a, b) => {
+function _dateDiffInDays(a, b) {
     // Discard the time and time-zone information.
     const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
     const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
 
     return Math.floor((utc2 - utc1) / _MS_PER_DAY);
-};
+}
 
 //
 //
 // a and b are javascript Date objects
-const _dateDiffInDays2zero = (a) => {
+function _dateDiffInDays2zero (a) {
     // Discard the time and time-zone information.
     const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
     return Math.floor((utc1 - _DATE_ZERO) / _MS_PER_DAY);
-};
+}
 
 //
 //
@@ -548,12 +533,6 @@ function installApp() {
 //
 //
 function init() {
-
-    // old crap - thanks...
-    if (_msie) {
-        doc.getElementById("lblOldCrap").classList.remove("hidden");
-        return;
-    }
 
     // check for launch from desktop
     if (navigator.standalone) {
