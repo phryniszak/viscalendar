@@ -13,7 +13,6 @@ var doc = window.document,
     _shift,
     _browserLaunched = true;
 
-
 const FIRSTDAYOFWEEK = 1;
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
 const _DATE_ZERO = Date.UTC(2005, 9, 10);
@@ -433,7 +432,7 @@ function AboutModal() {
 
                 if (_browserLaunched) {
                     // enable/disable install button
-                    if (window.deferredPrompt)
+                    if (window._deferredPrompt)
                         doc.getElementById("btnInstall").removeAttribute("disabled");
                     else
                         doc.getElementById("btnInstall").setAttribute("disabled", "");
@@ -503,25 +502,27 @@ function updateShift() {
 }
 
 //
-//
+// https://web.dev/codelab-make-installable/
 // https://web.dev/customize-install/#detect-mode
 function installApp() {
-    console.log("installApp");
-    const promptEvent = window.deferredPrompt;
+    
+    const promptEvent = window._deferredPrompt;
     if (!promptEvent) {
         // The deferred prompt isn't available.
         return;
     }
+    
     // Show the install prompt.
     promptEvent.prompt();
     // Log the result
-    promptEvent.userChoice.then((result) => {
-        console.log("userChoice", result);
+    promptEvent.userChoice.then(() => {
+
         // Reset the deferred prompt variable, since
         // prompt() can only be called once.
-        window.deferredPrompt = null;
-        // Hide the install button.
-        // divInstall.classList.toggle("hidden", true);
+        window._deferredPrompt = null;
+
+        // Hide the modal
+        _modAbout.close();
     });
 }
 
@@ -577,3 +578,8 @@ function resize() {
 }
 
 window.onload = init;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    // Stash the event so it can be triggered later.
+    window._deferredPrompt = e;
+});
