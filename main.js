@@ -193,11 +193,7 @@ function MonthScroller(date) {
     //
     this.initMonthTemplate = () => {
 
-        var date = new Date(0, 0);
-        // Rewind to first day of the week.
-        while (date.getDay() !== FIRSTDAYOFWEEK) {
-            _dateAdd(date, -1);
-        }
+        var date = new Date(_DATE_ZERO);
 
         let dayNamesNodes = _templates.querySelectorAll("ul.weekdays >li");
 
