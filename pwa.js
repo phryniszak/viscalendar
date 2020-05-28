@@ -13,6 +13,7 @@ UpUp.start({
 
         "./images/welcome_card.jpg",
         "./images/favicon.ico",
+        "./loadJS.js",
         "./shifts.js",
         "./main.js",
         "./pwa.js",
