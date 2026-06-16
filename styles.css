@@ -47,12 +47,19 @@ body {
 
 .demo-card-wide>.mdl-card__title {
     color: #fff;
-    height: 176px;
+    height: 56px;
     background: url('./images/welcome_card.jpg') center / cover;
 }
 
 .demo-card-wide>.mdl-card__menu {
     color: #fff;
+}
+
+.yt-embed {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    display: block;
 }
 
 /* ------------------------------------------------------------------------------------------------------ */

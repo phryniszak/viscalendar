@@ -39,7 +39,7 @@ function _dateDiffInDays(a, b) {
 //
 //
 // a and b are javascript Date objects
-function _dateDiffInDays2zero (a) {
+function _dateDiffInDays2zero(a) {
     // Discard the time and time-zone information.
     const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
     return Math.floor((utc1 - _DATE_ZERO) / _MS_PER_DAY);
@@ -411,7 +411,7 @@ function AboutModal() {
                 break;
             case 20:
                 lblTick.style.opacity = 1;
-                lblTick.innerText = `... ${_dateDiffInDays(new Date(), new Date(2024, 3, 1))} days left`;
+                lblTick.innerText = `... ${_dateDiffInDays(new Date(2026, 5, 4), new Date())} days since I quit`;
                 break;
             case 35:
                 lblTick.style.opacity = 0;
@@ -505,13 +505,13 @@ function updateShift() {
 // https://web.dev/codelab-make-installable/
 // https://web.dev/customize-install/#detect-mode
 function installApp() {
-    
+
     const promptEvent = window._deferredPrompt;
     if (!promptEvent) {
         // The deferred prompt isn't available.
         return;
     }
-    
+
     // Show the install prompt.
     promptEvent.prompt();
     // Log the result

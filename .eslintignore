@@ -1,0 +1,12 @@
+# Ignore vendor and generated files
+mdl/
+mdl/*.min.js
+upup.min.js
+upup.sw.min.js
+images/
+
+# Node modules
+node_modules/
+
+# Optional: ignore build outputs
+dist/
